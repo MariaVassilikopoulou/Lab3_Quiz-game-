@@ -1,0 +1,39 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net7.0-windows</TargetFramework>
+    <RootNamespace>Lab3_Quiz_game_</RootNamespace>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Creat_tv-quiz-show-image.avif" />
+    <None Remove="Images\Creat_Image4.png" />
+    <None Remove="Main_quiz-game-stage-.avif" />
+  </ItemGroup>
+	<ItemGroup>
+		<Folder Include="DataModels\" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Resource Include="Images\Creat_Image4.png">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="Images\Creat_ny_bild.PNG">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="Images\Main_ny_bild1.PNG">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="Images\Play_ny_bild2.PNG">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Resource>
+	</ItemGroup>
+	<ItemGroup>
+	  <Page Update="PlayQuiz.xaml">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Page>
+	</ItemGroup>
+
+</Project>

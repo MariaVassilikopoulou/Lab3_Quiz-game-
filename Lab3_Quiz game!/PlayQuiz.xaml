@@ -1,0 +1,62 @@
+﻿<Window x:Class="Lab3_Quiz_game_.PlayQuiz"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Lab3_Quiz_game_"
+        mc:Ignorable="d"
+        Title="PlayQuiz" Height="400" Width="700">
+    <Grid Background="Sienna">
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition  Width="*"/>
+            <ColumnDefinition  Width="*"/>
+            <ColumnDefinition  Width="auto"/>
+            <ColumnDefinition  Width="auto"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="20"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="20"/>
+        </Grid.RowDefinitions>
+        <TextBox x:Name="TextboxTitle"  Grid.Column="3" Grid.Row="1"  
+                 Text="Knowledge Quiz" Background="Gold" FontFamily="Castellar"  Margin="100,10,0,0" FontSize="20" FontWeight="Bold" TextChanged="TextboxTitle_TextChanged" BorderBrush="Firebrick"/>
+
+        <TextBlock x:Name="QuestionText" Text="Random qusetions" TextWrapping="Wrap"  Grid.Column="2" Grid.Row="2" Grid.ColumnSpan="3" Background="#FFF7EFEF" FontFamily="Castellar" FontStretch="Expanded"/>
+
+
+        <Button x:Name="Answer1Button" Grid.Column="2" Grid.Row="3" Grid.ColumnSpan="3" Content=" Answer 1" Click="AnswerButton_Click" FontFamily="Castellar" Background="Chartreuse" BorderBrush="Firebrick" BorderThickness="1,1,1,1" Opacity="0.8"/>
+
+        <Button x:Name="Answer2Button" Grid.Column="2" Grid.Row="4"  Grid.ColumnSpan="3" Content=" Answer 2" Click="AnswerButton_Click" Background="Chartreuse" FontFamily="Castellar" BorderBrush="Firebrick" Opacity="0.8" />
+
+        <Button x:Name="Answer3Button" Grid.Column="2" Grid.Row="5" Grid.ColumnSpan="3" Content=" Answer 3" Click="AnswerButton_Click"  Background="Chartreuse" FontFamily="Castellar" BorderBrush="Firebrick" Opacity="0.8"/>
+
+        <TextBlock x:Name="ScoreText" Text="Score: " Grid.Column=" 2" Grid.Row="6"  Grid.ColumnSpan="2" FontFamily="Castellar" Background="Sienna" FontWeight="Bold" Opacity="0.8" />
+        <TextBlock x:Name="RemainingQuestions" Text="Remaining questions: " Grid.Column="4" Grid.Row="6" FontFamily="Castellar" Background="Sienna" FontWeight="Bold" Opacity="0.8"/>
+        <Button x:Name= "ReturnToMenu"  Content="Return to main menu" Grid.Column="4" Grid.Row="7" Click="ReturnToMenu_Click" FontFamily="Castellar" Background="LightBlue" FontSize="10" />
+
+         <StackPanel  Grid.Column="2" Grid.Row="8" Grid.ColumnSpan="34" Grid.RowSpan="1" Orientation="Horizontal" >
+            <Image  MaxHeight="100" MaxWidth="100" Source="C:\Users\vasil\Desktop\PRWTO_SXOLEIO\Lab3_Quiz game!\Lab3_Quiz game!\Images\Play_ny_bild2.PNG" Opacity="0.9"/>
+            <Image  MaxHeight="100" MaxWidth="100" Source="C:\Users\vasil\Desktop\PRWTO_SXOLEIO\Lab3_Quiz game!\Lab3_Quiz game!\Images\Play_ny_bild2.PNG" Opacity="0.9"/>
+            <Image  MaxHeight="100" MaxWidth="100" Source="C:\Users\vasil\Desktop\PRWTO_SXOLEIO\Lab3_Quiz game!\Lab3_Quiz game!\Images\Play_ny_bild2.PNG" Opacity="0.9"/>
+            <Image  MaxHeight="100" MaxWidth="100" Source="C:\Users\vasil\Desktop\PRWTO_SXOLEIO\Lab3_Quiz game!\Lab3_Quiz game!\Images\Play_ny_bild2.PNG" Opacity="0.9"/>
+            <Image  MaxHeight="100" MaxWidth="100" Source="C:\Users\vasil\Desktop\PRWTO_SXOLEIO\Lab3_Quiz game!\Lab3_Quiz game!\Images\Play_ny_bild2.PNG" Opacity="0.9"/>
+            <Image  MaxHeight="100" MaxWidth="100" Source="C:\Users\vasil\Desktop\PRWTO_SXOLEIO\Lab3_Quiz game!\Lab3_Quiz game!\Images\Play_ny_bild2.PNG" Opacity="0.9"/>
+            <Image  MaxHeight="100" MaxWidth="100" Source="C:\Users\vasil\Desktop\PRWTO_SXOLEIO\Lab3_Quiz game!\Lab3_Quiz game!\Images\Play_ny_bild2.PNG" Opacity="0.9"/>
+           
+
+        </StackPanel>
+       
+
+    </Grid>
+</Window>
