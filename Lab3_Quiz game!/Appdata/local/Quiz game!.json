@@ -1,0 +1,14 @@
+{
+  "questions": [
+    {
+      "statement": "What gas do plants primarily absorb during photosynthesis?",
+      "correctAnswer": 1,
+      "answers": [
+        "A) Oxygen",
+        "B) Carbon Dioxide",
+        "C) Nitrogen"
+      ]
+    }
+
+  ]
+}
