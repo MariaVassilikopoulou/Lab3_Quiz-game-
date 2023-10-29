@@ -32,7 +32,7 @@
         <TextBox x:Name="TextboxTitle"  Grid.Column="3" Grid.Row="1"  
                  Text="Knowledge Quiz" Background="Gold" FontFamily="Castellar"  Margin="100,10,0,0" FontSize="20" FontWeight="Bold" TextChanged="TextboxTitle_TextChanged" BorderBrush="Firebrick"/>
 
-        <TextBlock x:Name="QuestionText" Text="Random qusetions" TextWrapping="Wrap"  Grid.Column="2" Grid.Row="2" Grid.ColumnSpan="3" Background="#FFF7EFEF" FontFamily="Castellar" FontStretch="Expanded"/>
+        <TextBlock x:Name="QuestionText" Text="Random qusetions" TextWrapping="Wrap"  Grid.Column="2" Grid.Row="2" Grid.ColumnSpan="3" Background="#FFF7EFEF" FontFamily="Castellar" FontStretch="Expanded" ContextMenuClosing="QuestionText_ContextMenuClosing"/>
 
 
         <Button x:Name="Answer1Button" Grid.Column="2" Grid.Row="3" Grid.ColumnSpan="3" Content=" Answer 1" Click="AnswerButton_Click" FontFamily="Castellar" Background="Chartreuse" BorderBrush="Firebrick" BorderThickness="1,1,1,1" Opacity="0.8"/>

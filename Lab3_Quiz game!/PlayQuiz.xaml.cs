@@ -226,6 +226,11 @@ namespace Lab3_Quiz_game_
         {
 
         }
+
+        private void QuestionText_ContextMenuClosing(object sender, ContextMenuEventArgs e)
+        {
+
+        }
     }
 }
 
