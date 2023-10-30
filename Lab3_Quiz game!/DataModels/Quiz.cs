@@ -208,9 +208,6 @@ public class Quiz
             MessageBox.Show(e.Message);
         }
 
-
-
-
     }
 
 

@@ -1,6 +1,7 @@
 ﻿using Lab3_Quiz_game_.DataModels;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Numerics;
 using System.Text;
@@ -25,6 +26,7 @@ namespace Lab3_Quiz_game_
     {
         private Quiz quiz; //= new Quiz();
         private Question currentQuestion;
+        private List<Question> savedQuestions= new List<Question>();
 
         public CreatQuiz()
         {
@@ -80,7 +82,7 @@ namespace Lab3_Quiz_game_
         {
             CorrectAnswerComboBox.IsEnabled = true;
         }
-        private void SaveChanges_Click(object sender, RoutedEventArgs e)
+        private async void SaveChanges_Click(object sender, RoutedEventArgs e)
         {
 
            //MessageBox.Show("SaveChanges_Click event showingup");
@@ -93,6 +95,8 @@ namespace Lab3_Quiz_game_
             string title = QuizNameTextBox.Text;
 
            
+
+
             if (string.IsNullOrEmpty(title) || string.IsNullOrEmpty(statement) ||
                 string.IsNullOrEmpty(answer1) || string.IsNullOrEmpty(answer2) || string.IsNullOrEmpty(answer3) ||
             correctAnswer == -1)
@@ -125,7 +129,19 @@ namespace Lab3_Quiz_game_
                 {
                     MessageBox.Show("You saved your first question. Continue!");
                 }
+                else
+                {
+
+                    //string appDataFolderPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+                    //string filePath = System.IO.Path.Combine(appDataFolderPath, "Creat_Quiz/question1.txt");
+                    //await SaveFileAsync(filePath, currentQuestion);
+                    //MessageBox.Show("Question saved successfully!");
+
+                    savedQuestions.Add(currentQuestion);
+                    MessageBox.Show(currentQuestion.Statement);
+                }
             }
+
 
            
             QuestionTextBox.Clear();
@@ -148,5 +164,27 @@ namespace Lab3_Quiz_game_
         {
 
         }
+
+
+        //public async Task SaveFileAsync(string filePath, Question question)
+        //{
+        //    try
+        //    {
+        //        using (StreamWriter writer = new StreamWriter(filePath))
+        //        {
+        //            await writer.WriteLineAsync(question.Statement);
+        //            await writer.WriteLineAsync(question.Answers[0]);
+        //            await writer.WriteLineAsync(question.Answers[1]);
+        //            await writer.WriteLineAsync(question.Answers[2]);
+        //            await writer.WriteLineAsync(question.CorrectAnswer.ToString());
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        // Handle any exceptions, e.g., display an error message or log the error.
+        //        MessageBox.Show("An error occurred while saving the file: " + ex.Message);
+        //    }
+        //}
+
     }
 }
