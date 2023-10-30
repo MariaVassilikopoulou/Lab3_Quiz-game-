@@ -21,11 +21,13 @@ namespace Lab3_Quiz_game_
     /// </summary>
     public partial class MainWindow : Window
     {
-        Quiz quiz;
+        Quiz quiz = new Quiz();
 
         public MainWindow()
         {
             InitializeComponent();
+            quiz.GenerateFolderAndTextFile();
+         
         }
 
         private void UsersChoice_TextChanged(object sender, TextChangedEventArgs e)
