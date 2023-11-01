@@ -85,7 +85,7 @@ namespace Lab3_Quiz_game_
         private async void SaveChanges_Click(object sender, RoutedEventArgs e)
         {
 
-           //MessageBox.Show("SaveChanges_Click event showingup");
+         
 
             string statement = QuestionTextBox.Text;
             string answer1 = Answer1TextBox.Text;

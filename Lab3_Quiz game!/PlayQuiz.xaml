@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Lab3_Quiz_game_"
         mc:Ignorable="d"
-        Title="PlayQuiz" Height="400" Width="700">
+        Title="PlayQuiz" Height="400" Width="800">
     <Grid Background="Sienna">
 
         <Grid.ColumnDefinitions>
