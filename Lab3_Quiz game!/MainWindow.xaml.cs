@@ -29,18 +29,16 @@ namespace Lab3_Quiz_game_
             quiz.GenerateFolderAndTextFile();
          
         }
-
         private void UsersChoice_TextChanged(object sender, TextChangedEventArgs e)
         {
-            
+
 
         }
-
         private void SubmitButton_Click(object sender, RoutedEventArgs e)
         {
             string choice = UsersChoice.Text;
 
-            if (int.TryParse(choice, out int choiceAsInt) && choiceAsInt >= 1 && choiceAsInt <= 3)//out=analysera indata och fånga det resulterande heltalsvärdet i ett enda metodanrop 
+            if (int.TryParse(choice, out int choiceAsInt) && choiceAsInt >= 1 && choiceAsInt <= 3)
 
             {
                 switch (choiceAsInt)
@@ -48,38 +46,26 @@ namespace Lab3_Quiz_game_
                     case 1:
                         PlayQuiz playQuiz = new PlayQuiz();
                         playQuiz.Show();
+                        UsersChoice.Clear();
                         break;
                     case 2:
                         CreatQuiz creatQuiz = new CreatQuiz();
                         creatQuiz.Show();
+                        UsersChoice.Clear();
                         break;
-                    //case 3:
-                    //    EditQuiz editQuiz = new EditQuiz();
-                    //    editQuiz.Show();
-                    //    break;
                     case 3:
-                        MessageBox.Show("Hope you enjoyed the Game. GoodBue!");
-                        this.Close();
+                        MessageBox.Show("Hope you enjoyed the Game. GoodBye!");
+                        Close();
                         break;
-
                 }
-
             }
             else
             {
                 MessageBox.Show("Invalid input. Please enter a number between 1 and 3.");
+                UsersChoice.Clear();
             }
 
-
         }
-
-
-
-        
-
-
-
-
     }
 }
 

@@ -14,9 +14,6 @@
     <None Remove="Main_quiz-game-stage-.avif" />
   </ItemGroup>
 	<ItemGroup>
-		<Folder Include="DataModels\" />
-	</ItemGroup>
-	<ItemGroup>
 	  <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
 	</ItemGroup>
 	<ItemGroup>
@@ -34,7 +31,7 @@
 	  </Resource>
 	</ItemGroup>
 	<ItemGroup>
-	  <Page Update="PlayQuiz.xaml">
+	  <Page Update="UserControls\PlayQuiz.xaml">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </Page>
 	</ItemGroup>

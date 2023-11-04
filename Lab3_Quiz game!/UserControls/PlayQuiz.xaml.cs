@@ -32,30 +32,15 @@ namespace Lab3_Quiz_game_
         private Question currentQuestion;
         private int userScore = 0;
         private int totalScore = 0;
-        //private List<Question> quizQuestions;
-
         private int selectedAnswerIndex = -1;
-
-
-
 
         public PlayQuiz()
         {
             InitializeComponent();
-
             quiz = new Quiz();
-
             quiz.GenerateQuestions();
-          
-
-
             DisplayCurrentQuestion();
-
-
         }
-
-
-      
 
         private void DisplayCurrentQuestion()
         {
@@ -151,9 +136,8 @@ namespace Lab3_Quiz_game_
             }
             else
             {
-                this.Close();
-                MainWindow mainWindow = new MainWindow();
-                mainWindow.Show();
+                Close();
+               
             }
         }
 
@@ -163,11 +147,8 @@ namespace Lab3_Quiz_game_
 
             ScoreText.Text = "Score: 0";
             RemainingQuestions.Text = $"Remaining Questions: {0}";
-
             MessageBox.Show("Your final score is: " + userScore, "Go back to menu");
-               MainWindow mainWindow = new MainWindow();
-                mainWindow.Show();
-                this.Close();
+            Close();
            
         }
 

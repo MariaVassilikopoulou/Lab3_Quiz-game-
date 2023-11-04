@@ -8,7 +8,7 @@ namespace Lab3_Quiz_game_;
 
 public class Question
 {
-    public string Statement { get; set; }
+    public string Statement { get; set; } 
     public string[] Answers { get; set; }
     public int CorrectAnswer { get; set; }
 
@@ -27,13 +27,10 @@ public class Question
         CorrectAnswer = -1; 
     }
 
-
     public void AddAnswers(string answer1, string answer2, string answer3)
     {
        Answers= new string[] {answer1, answer2,answer3};
-
     }
-
 
     public void RemoveAnswers()
     {
@@ -47,12 +44,6 @@ public class Question
             Answers[i] = string.Empty;
         }
     }
-
-    //public void SetCorrectAnswer(string selectedAnswer)
-    //{
-    //    int index = Array.IndexOf(Answers, selectedAnswer);
-    //    CorrectAnswer= index;
-    //}
 
 }
 

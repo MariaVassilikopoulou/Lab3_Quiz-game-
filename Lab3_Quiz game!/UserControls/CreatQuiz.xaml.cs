@@ -1,4 +1,5 @@
 ﻿using Lab3_Quiz_game_.DataModels;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -24,9 +25,10 @@ namespace Lab3_Quiz_game_
     /// </summary>
     public partial class CreatQuiz : Window
     {
-        private Quiz quiz; //= new Quiz();
+        private Quiz quiz; 
         private Question currentQuestion;
-        private List<Question> savedQuestions= new List<Question>();
+        private List<Question> savedQuestions = new List<Question>();
+        private string? json;
 
         public CreatQuiz()
         {
@@ -36,12 +38,9 @@ namespace Lab3_Quiz_game_
 
         private void AddQuestion_Click(object sender, RoutedEventArgs e)
         {
-           
-
             QuestionTextBox.IsEnabled = true;
             string questionText = QuestionTextBox.Text;
             currentQuestion = new Question(questionText);
-           
         }
 
         private void AddAnswers_Click(object sender, RoutedEventArgs e)
@@ -49,7 +48,6 @@ namespace Lab3_Quiz_game_
             Answer1TextBox.IsEnabled = true;
             Answer2TextBox.IsEnabled = true;
             Answer3TextBox.IsEnabled = true;
-
             RemoveAnswersButton.IsEnabled = true;
 
 
@@ -82,20 +80,17 @@ namespace Lab3_Quiz_game_
         {
             CorrectAnswerComboBox.IsEnabled = true;
         }
-        private async void SaveChanges_Click(object sender, RoutedEventArgs e)
+
+
+        private void SaveChanges_Click(object sender, RoutedEventArgs e)
         {
-
-         
-
+           
             string statement = QuestionTextBox.Text;
             string answer1 = Answer1TextBox.Text;
             string answer2 = Answer2TextBox.Text;
             string answer3 = Answer3TextBox.Text;
             int correctAnswer = CorrectAnswerComboBox.SelectedIndex;
             string title = QuizNameTextBox.Text;
-
-           
-
 
             if (string.IsNullOrEmpty(title) || string.IsNullOrEmpty(statement) ||
                 string.IsNullOrEmpty(answer1) || string.IsNullOrEmpty(answer2) || string.IsNullOrEmpty(answer3) ||
@@ -104,6 +99,12 @@ namespace Lab3_Quiz_game_
                 MessageBox.Show("Please complete the Quiz Name, Question, provide at least three answers, and select a correct answer.");
                 return;
             }
+
+            Question newQuestion = new Question(statement);
+            newQuestion.AddAnswers(answer1, answer2, answer3);
+            newQuestion.CorrectAnswer = correctAnswer;
+
+           
             if (currentQuestion == null)
             {
                 currentQuestion = new Question(statement);
@@ -124,26 +125,32 @@ namespace Lab3_Quiz_game_
 
             if (currentQuestion != null)
             {
-               QuestionsListBox.Items.Add(currentQuestion.Statement);
+                QuestionsListBox.Items.Add(currentQuestion.Statement);
                 if (QuestionsListBox.Items.Count == 1)
                 {
                     MessageBox.Show("You saved your first question. Continue!");
                 }
-                else
-                {
+                //else
+                //{
+                //string appName = "Lab3_Quiz game!";
+                //string appDataFolderPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+                //string filePath = System.IO.Path.Combine(appDataFolderPath, appName, "Creat_Quiz","question1.txt");
+                //await SaveFileAsync(filePath, currentQuestion);
+                //MessageBox.Show("Question saved successfully!");
 
-                    //string appDataFolderPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
-                    //string filePath = System.IO.Path.Combine(appDataFolderPath, "Creat_Quiz/question1.txt");
-                    //await SaveFileAsync(filePath, currentQuestion);
-                    //MessageBox.Show("Question saved successfully!");
+                //string folderName = "Quiz_game!";
+                //string localFolderPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+                //string filePath = System.IO.Path.Combine(localFolderPath, folderName);
+                //await SaveFileAsync(filePath, currentQuestion);
 
-                    savedQuestions.Add(currentQuestion);
-                    MessageBox.Show(currentQuestion.Statement);
-                }
+
+                currentQuestion.AddAnswers(answer1, answer2, answer3);
+                currentQuestion.CorrectAnswer = correctAnswer;
+
+                savedQuestions.Add(newQuestion);
+                SaveCurrentQuestionInCreat(savedQuestions);
+                MessageBox.Show("Question saved successfully!");
             }
-
-
-           
             QuestionTextBox.Clear();
             Answer1TextBox.Clear();
             Answer2TextBox.Clear();
@@ -151,21 +158,40 @@ namespace Lab3_Quiz_game_
             CorrectAnswerComboBox.SelectedIndex = -1;
             currentQuestion = null;
 
-
         }
 
+        public void SaveCurrentQuestionInCreat(List<Question> questions)
+        {
+            try
+            {
+                string folderName = "Quiz_game_Save_CurrentQuestion_InCreat";
+                string localFolderPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+                string folderPath = System.IO.Path.Combine(localFolderPath, folderName);
+
+              
+                if (!Directory.Exists(folderPath))
+                {
+                    Directory.CreateDirectory(folderPath);
+                }
+
+                string questionFileName = "Saved_Questions_Creat.txt";
+                string questionFilePath = System.IO.Path.Combine(folderPath, questionFileName);
+                string json = JsonConvert.SerializeObject(questions, Formatting.Indented);
+                File.WriteAllText(questionFilePath, json);
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+        }
+       
         private void Cancel_Click(object sender, RoutedEventArgs e)
         {
 
-            Close();
+         Close();
         }
 
-        private void Answer3TextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
-
-
+      
         //public async Task SaveFileAsync(string filePath, Question question)
         //{
         //    try
@@ -181,7 +207,7 @@ namespace Lab3_Quiz_game_
         //    }
         //    catch (Exception ex)
         //    {
-        //        // Handle any exceptions, e.g., display an error message or log the error.
+               
         //        MessageBox.Show("An error occurred while saving the file: " + ex.Message);
         //    }
         //}
