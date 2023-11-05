@@ -18,12 +18,12 @@ public class Quiz
     private List<Question> shuffledQuestions;
 
 
-    
+
     public Quiz()
     {
         _questions = new List<Question>();
-        shuffledQuestions= new List<Question>();
-      
+        shuffledQuestions = new List<Question>();
+
     }
 
     public Quiz(string title)
@@ -47,7 +47,7 @@ public class Quiz
     public void GenerateQuestions()
     {
 
-        AddQuestion("Which planet is closest to the Sun?", 0, "A) Earth", "B) Venus", "C) Mars");
+        AddQuestion("Which planet is closest to the Sun?", 1, "A) Earth", "B) Venus", "C) Mars");
         AddQuestion("Who is the author of 'The Great Gatsby'?", 1, "A) F. Scott Fitzgerald", "B) Jane Austen", "C) Charles Dickens");
         AddQuestion("In which continent is the Great Wall of China located?", 0, "A) Asia", "B) Africa", "C) Europe");
         AddQuestion("What is the chemical symbol for silver?", 1, "A) Si", "B) Ag", "C) Al");
@@ -89,7 +89,7 @@ public class Quiz
         {
             shuffledQuestions = _questions.ToList();
 
-           
+
             if (shuffledQuestions.Count > 3)
             {
                 ShuffleQuestions();
@@ -103,15 +103,15 @@ public class Quiz
 
         return randomQuestion;
     }
-   
+
 
     public void RemoveQuestion(int index)
     {
 
-        
+
         if (index >= 0 && index < _questions.Count())
         {
-            
+
             List<Question> updatedQuestions = _questions.ToList();
             updatedQuestions.RemoveAt(index);
             _questions = updatedQuestions;
@@ -127,7 +127,7 @@ public class Quiz
     public void GenerateFolderAndTextFile()
     {
 
-        string folderName = "Quiz_game!";
+        string folderName = "Lab3_Quiz_game!/Quiz_game!/";
         string localFolderPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
         string folderPath = Path.Combine(localFolderPath, folderName);
 
@@ -143,7 +143,7 @@ public class Quiz
                 string questionFileName = "Knowledge_quiz_Questions.txt";
                 string questionFilePath = Path.Combine(folderPath, questionFileName);
                 File.WriteAllText(questionFilePath, json);
-               
+
             }
         }
         catch (Exception e)

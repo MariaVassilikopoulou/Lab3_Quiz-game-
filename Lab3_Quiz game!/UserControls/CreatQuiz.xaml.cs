@@ -25,7 +25,7 @@ namespace Lab3_Quiz_game_
     /// </summary>
     public partial class CreatQuiz : Window
     {
-        private Quiz quiz; 
+        private Quiz quiz;
         private Question currentQuestion;
         private List<Question> savedQuestions = new List<Question>();
         private string? json;
@@ -56,7 +56,7 @@ namespace Lab3_Quiz_game_
                 string answer1 = Answer1TextBox.Text;
                 string answer2 = Answer2TextBox.Text;
                 string answer3 = Answer3TextBox.Text;
-                currentQuestion.AddAnswers( answer1, answer2, answer3);
+                currentQuestion.AddAnswers(answer1, answer2, answer3);
             }
         }
 
@@ -74,7 +74,7 @@ namespace Lab3_Quiz_game_
             {
                 currentQuestion.ClearAnswers();
             }
-        
+
         }
         private void AddCorrectAnswers_Click(object sender, RoutedEventArgs e)
         {
@@ -82,9 +82,9 @@ namespace Lab3_Quiz_game_
         }
 
 
-        private void SaveChanges_Click(object sender, RoutedEventArgs e)
+        private async void SaveChanges_Click(object sender, RoutedEventArgs e)
         {
-           
+
             string statement = QuestionTextBox.Text;
             string answer1 = Answer1TextBox.Text;
             string answer2 = Answer2TextBox.Text;
@@ -104,7 +104,7 @@ namespace Lab3_Quiz_game_
             newQuestion.AddAnswers(answer1, answer2, answer3);
             newQuestion.CorrectAnswer = correctAnswer;
 
-           
+
             if (currentQuestion == null)
             {
                 currentQuestion = new Question(statement);
@@ -132,16 +132,16 @@ namespace Lab3_Quiz_game_
                 }
                 //else
                 //{
-                //string appName = "Lab3_Quiz game!";
-                //string appDataFolderPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
-                //string filePath = System.IO.Path.Combine(appDataFolderPath, appName, "Creat_Quiz","question1.txt");
-                //await SaveFileAsync(filePath, currentQuestion);
-                //MessageBox.Show("Question saved successfully!");
+                string appName = "Lab3_Quiz_game!";
+                string appDataFolderPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+                string filePath = System.IO.Path.Combine(appDataFolderPath, appName, "Quiz_game!/", "async.txt");
+                await SaveFileAsync(filePath, currentQuestion);
+                MessageBox.Show("Question saved successfully!");
 
-                //string folderName = "Quiz_game!";
-                //string localFolderPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+                string folderName = "Quiz_game!/";
+                string localFolderPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
                 //string filePath = System.IO.Path.Combine(localFolderPath, folderName);
-                //await SaveFileAsync(filePath, currentQuestion);
+                await SaveFileAsync(filePath, currentQuestion);
 
 
                 currentQuestion.AddAnswers(answer1, answer2, answer3);
@@ -149,7 +149,7 @@ namespace Lab3_Quiz_game_
 
                 savedQuestions.Add(newQuestion);
                 SaveCurrentQuestionInCreat(savedQuestions);
-                MessageBox.Show("Question saved successfully!");
+                MessageBox.Show("Async succesful!");
             }
             QuestionTextBox.Clear();
             Answer1TextBox.Clear();
@@ -164,11 +164,11 @@ namespace Lab3_Quiz_game_
         {
             try
             {
-                string folderName = "Quiz_game_Save_CurrentQuestion_InCreat";
+                string folderName = "Lab3_Quiz_game!/Quiz_game_Save_CurrentQuestion_InCreat/";
                 string localFolderPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
                 string folderPath = System.IO.Path.Combine(localFolderPath, folderName);
 
-              
+
                 if (!Directory.Exists(folderPath))
                 {
                     Directory.CreateDirectory(folderPath);
@@ -184,33 +184,33 @@ namespace Lab3_Quiz_game_
                 MessageBox.Show(e.Message);
             }
         }
-       
+
         private void Cancel_Click(object sender, RoutedEventArgs e)
         {
 
-         Close();
+            Close();
         }
 
-      
-        //public async Task SaveFileAsync(string filePath, Question question)
-        //{
-        //    try
-        //    {
-        //        using (StreamWriter writer = new StreamWriter(filePath))
-        //        {
-        //            await writer.WriteLineAsync(question.Statement);
-        //            await writer.WriteLineAsync(question.Answers[0]);
-        //            await writer.WriteLineAsync(question.Answers[1]);
-        //            await writer.WriteLineAsync(question.Answers[2]);
-        //            await writer.WriteLineAsync(question.CorrectAnswer.ToString());
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-               
-        //        MessageBox.Show("An error occurred while saving the file: " + ex.Message);
-        //    }
-        //}
+
+        public async Task SaveFileAsync(string filePath, Question question)
+        {
+            try
+            {
+                using (StreamWriter writer = new StreamWriter(filePath))
+                {
+                    await writer.WriteLineAsync(question.Statement);
+                    await writer.WriteLineAsync(question.Answers[0]);
+                    await writer.WriteLineAsync(question.Answers[1]);
+                    await writer.WriteLineAsync(question.Answers[2]);
+                    await writer.WriteLineAsync(question.CorrectAnswer.ToString());
+                }
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show("An error occurred while saving the file: " + ex.Message);
+            }
+        }
 
     }
 }
