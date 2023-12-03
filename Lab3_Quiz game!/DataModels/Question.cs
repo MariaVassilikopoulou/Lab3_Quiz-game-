@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MongoDB.Bson.Serialization.Attributes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,21 +9,25 @@ namespace Lab3_Quiz_game_;
 
 public class Question
 {
-    public string Statement { get; set; } 
+    [BsonId]
+	public Guid Id { get; set; }
+	public string Statement { get; set; } 
     public string[] Answers { get; set; }
     public int CorrectAnswer { get; set; }
+	
 
-
-    public Question(string statement, string[] answer, int correctAnswer)
+	public Question(string statement, string[] answer, int correctAnswer)
     {
-        Statement = statement;
+		Id = Guid.NewGuid();
+		Statement = statement;
         Answers = answer;
         CorrectAnswer = correctAnswer;
     }
 
     public Question(string statement)
     {
-        Statement = statement;
+		Id = Guid.NewGuid();
+		Statement = statement;
         Answers = new string[3]; 
         CorrectAnswer = -1; 
     }

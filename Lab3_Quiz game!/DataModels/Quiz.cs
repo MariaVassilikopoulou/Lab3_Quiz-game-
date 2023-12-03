@@ -1,4 +1,6 @@
-﻿using Newtonsoft.Json;
+﻿using MongoDB.Bson.Serialization.Attributes;
+using MongoDB.Driver;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -11,28 +13,41 @@ namespace Lab3_Quiz_game_.DataModels;
 
 public class Quiz
 {
-    private IEnumerable<Question> _questions;
+    [BsonId]
+	public Guid Id { get; set; }
+	public string Title { get { return _title; } set { _title = value; } }
+	
+	private IEnumerable<Question> _questions;
     private string _title = string.Empty;
-    public IEnumerable<Question> Questions => _questions;
-    public string Title => _title;
+    public IEnumerable<Question> Questions { get { return _questions; } }
+	//public string Title => _title;
     private List<Question> shuffledQuestions;
+	
 
 
-
-    public Quiz()
+	public Quiz()
     {
-        _questions = new List<Question>();
+		Id = Guid.NewGuid();
+		_questions = new List<Question>();
         shuffledQuestions = new List<Question>();
 
     }
 
     public Quiz(string title)
     {
-        _title = title;
-    }
+		Id = Guid.NewGuid();
+		_title = title;
+		_questions = new List<Question>();
+		shuffledQuestions = new List<Question>();
+	}
+
+	///////////////////////////////////////////////////////
 
 
-    public void AddQuestion(string statement, int correctAnswer, params string[] answers)
+
+
+
+		public void AddQuestion(string statement, int correctAnswer, params string[] answers)
     {
 
         Question newQuestion = new Question(statement, answers, correctAnswer);
