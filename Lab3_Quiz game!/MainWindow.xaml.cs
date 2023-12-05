@@ -39,15 +39,15 @@ namespace Lab3_Quiz_game_
 			InitializeComponent();
 			quiz.GenerateFolderAndTextFile();
 
-			
-			var client = new MongoClient("mongodb://mvass-quizgame:HRFJ5GHuc2WMaA5Nwjul4SyaMLY7yiKdfzgOxV83JjHpG1ukz0Xq5213S0Etn8RCPRETdQvq05mvACDbztMrHQ==@mvass-quizgame.mongo.cosmos.azure.com:10255/?ssl=true&retrywrites=false&replicaSet=globaldb&maxIdleTimeMS=120000&appName=@mvass-quizgame@"); 
+
+			var client = new MongoClient();//"azure conectionstring");
 			var database = client.GetDatabase("QuizGame");
 			collection = database.GetCollection<Question>("Questions");
 
 
 
 			GenerateQuestionsAndAddToMongoDB();
-
+		
 			var statementAddQuestion = "What is the chemical symbol of water?";
 			var correctAddAnswer = 0;
 			string[] answers = { "H2O", "O", "AR" };
@@ -56,12 +56,12 @@ namespace Lab3_Quiz_game_
 			//ReadAllQuestionsToMongoDB();
 
 			var  statementUpdate= "Which planet is closest to the Sun?";
-			var correctanswer=0;
+			var correctanswer=1;
 			//UpdateQuestionsToMongoDB( statementUpdate, correctanswer);
 
 			var statementDelete = "What is the chemical symbol for silver?";
 			//DeleteQuestionsToMongoDB(statementDelete);
-			//DeleteAllQuestionsToMongDB();
+			DeleteAllQuestionsToMongDB();
 
 		}
 
@@ -73,11 +73,31 @@ namespace Lab3_Quiz_game_
 			if (existingQuestion == null)
 			{
 
-			Question newQuestion = new Question(statement, answers, correctAnswer);
+			  Question newQuestion = new Question(statement, answers, correctAnswer);
 
 				collection.InsertOne(newQuestion);
 			}
 		}
+
+		//public void AddQuestions(List<Question> questions)
+		//{
+		//	var client = new MongoClient();
+		//	var database = client.GetDatabase("QuizGame");
+		//	var collection = database.GetCollection<Question>("Questions");
+		//	collection = database.GetCollection<Question>("Questions");
+
+		//	// Assign unique Guid to each question
+		//	foreach (var question in questions)
+		//	{
+		//		question.Id = Guid.NewGuid();
+		//	}
+
+		//	// Insert the list of questions into the MongoDB collection
+		//	collection.InsertMany(questions);
+		//}
+
+
+
 
 		////READ
 		public List<Question> ReadAllQuestionsToMongoDB()
@@ -138,12 +158,6 @@ namespace Lab3_Quiz_game_
 			AddQuestionToMongoDB("What is the chemical symbol for nitrogen?", 1, "A) Ni", "B) N", "C) Na");
 
 		}
-
-
-
-
-
-
 
 
 
